@@ -1,13 +1,22 @@
 # sharebox-backend
 
-To install dependencies:
+## How to start
 
-```bash
-bun install
-```
+1. Install dependencies:
+    ```bash
+    bun install
+    ```
 
-To run:
+2. Set up environment variable
 
-```bash
-bun run src/app.ts
-```
+    ```bash
+    cp .env.example .env
+    ```
+    and set the values
+
+
+3. Run
+
+    ```bash
+    bun run dev
+    ```
