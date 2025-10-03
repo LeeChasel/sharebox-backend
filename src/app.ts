@@ -4,6 +4,8 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { env } from './config/env';
+import { errorHandler } from './shared/middlewares/error.middleware';
+import { notFoundHandler } from './shared/middlewares/not-found.middleware';
 
 class App {
   public app: Application;
@@ -12,6 +14,9 @@ class App {
     this.app = express();
     this.initializeMiddlewares();
     this.initializeRoutes();
+
+    // Called after routes to handle 404 and errors
+    this.initializeErrorHandling();
   }
 
   private initializeMiddlewares() {
@@ -36,6 +41,11 @@ class App {
     this.app.get('/health', (_, res) => {
       res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
     });
+  }
+
+  private initializeErrorHandling() {
+    this.app.use(notFoundHandler);
+    this.app.use(errorHandler);
   }
 }
 

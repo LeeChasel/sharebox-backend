@@ -15,4 +15,4 @@ if (!parsedEnv.success) {
   process.exit(1);
 }
 
-export const env = parsedEnv.data;
+export const env: Readonly<z.infer<typeof envSchema>> = parsedEnv.data;
